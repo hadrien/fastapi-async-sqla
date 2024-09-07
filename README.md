@@ -3,8 +3,8 @@
 ![PyPI](https://img.shields.io/pypi/v/fastapi-async-sqla)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org)
 
-FastAPI-Async-SQLA is an extension for [FastAPI] that eases the setup of async
-[SQLAlchemy] session and provides support for pagination.
+FastAPI-Async-SQLA is an [SQLAlchemy] extension for [FastAPI]. It supports asynchronous
+SQLAlchemy sessions using SQLAlchemy >= 2.0 and provides pagination support.
 
 # Installing
 
