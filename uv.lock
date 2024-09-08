@@ -142,7 +142,7 @@ wheels = [
 [[package]]
 name = "fastapi-async-sqla"
 version = "0.0.4"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "sqlalchemy", extra = ["asyncio"] },
     { name = "structlog" },
