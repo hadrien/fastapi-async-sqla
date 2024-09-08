@@ -26,4 +26,4 @@ jobs:
     - name: ⚡️ uv sync
       run: uv sync
     - name: 📜 semantic release
-      run: uv run semantic-release version --noop
+      run: uv run semantic-release --noop --strict version
