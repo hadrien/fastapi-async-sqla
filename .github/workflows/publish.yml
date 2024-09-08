@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - main
+
 jobs:
-  publish:
+
+  Publish:
     runs-on: ubuntu-latest
     concurrency: release
     permissions:
@@ -14,15 +16,8 @@ jobs:
     steps:
     - name: 📥 checkout
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: ⚡️ setup uv
-      uses: astral-sh/setup-uv@v2
-      with:
-        version: "latest"
-        enable-cache: true
-        cache-suffix: 2024-09-08 09:10
-        cache-dependency-glob: "uv.lock"
+    - name: 🔧 setup uv
+      uses: ./.github/uv
     - name: 📜 semantic release version
       run: uv run semantic-release --strict version
       env:

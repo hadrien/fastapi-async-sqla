@@ -10,13 +10,8 @@ jobs:
     steps:
     - name: 📥 checkout
       uses: actions/checkout@v4
-    - name: ⚡️ setup uv
-      uses: astral-sh/setup-uv@v2
-      with:
-        version: "latest"
-        enable-cache: true
-        cache-suffix: 2024-09-08 09:10
-        cache-dependency-glob: "uv.lock"
+    - name: 🔧 setup uv
+      uses: ./.github/uv
     - name: 🧪 pytest
       run: uv run pytest --cov fastapi_async_sqla --cov-report=term-missing --cov-report=xml
     - name:  "🐔 codecov: upload test coverage"
@@ -29,12 +24,7 @@ jobs:
     steps:
     - name: 📥 checkout
       uses: actions/checkout@v4
-    - name: ⚡️ setup uv
-      uses: astral-sh/setup-uv@v2
-      with:
-        version: "latest"
-        enable-cache: true
-        cache-suffix: 2024-09-08 09:10
-        cache-dependency-glob: "uv.lock"
+    - name: 🔧 setup uv
+      uses: ./.github/uv
     - name: 🐶 ruff
       run: uv run ruff check
