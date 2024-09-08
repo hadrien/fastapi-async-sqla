@@ -21,7 +21,11 @@ jobs:
     - name: ⚡️ uv sync
       run: uv sync
     - name: 🧪 pytest
-      run: uv run pytest --cov fastapi-async-sqla --junitxml=junit.xml -o junit_family=legacy
+      run: uv run pytest  --cov fastapi-async-sqla \
+                          --cov-report=term-missing \
+                          --cov tests \
+                          --junitxml=junit.xml \
+                          -o junit_family=legacy
     - name: 🐔 codecov
       if: ${{ !cancelled() }}
       uses: codecov/test-results-action@v1
