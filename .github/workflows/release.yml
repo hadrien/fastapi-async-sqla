@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    #branches:
+    #  - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 📥 checkout
+      uses: actions/checkout@v4
+    - name: 🐍 setup python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: ⚡️ setup uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "latest"
+        enable-cache: true
+        cache-suffix: 2024-09-08 09:10
+        cache-dependency-glob: |
+          pyproject.toml
+          uv.lock
+    - name: ⚡️ uv sync
+      run: uv sync
+    - name: 📜 semantic release
+      run: uv run semantic-release --noop
