@@ -21,8 +21,8 @@ jobs:
         enable-cache: true
         cache-suffix: 2024-09-08 09:10
         cache-dependency-glob: |
-          'pyproject.toml'
-          'uv.lock'
+          '**pyproject.toml'
+          '**uv.lock'
     - name: ⚡️ uv sync
       run: uv sync
     - name: 🧪 pytest
