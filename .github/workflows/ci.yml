@@ -21,9 +21,7 @@ jobs:
     - name: ⚡️ uv sync
       run: uv sync
     - name: 🧪 pytest
-      run: uv run pytest  --cov fastapi_async_sqla
-                          --cov-report=term-missing \
-                          --junitxml=test-reports/pytest/junit.xml \
+      run: uv run pytest  --cov fastapi_async_sqla --cov-report=term-missing --cov-report=xml
     - name:  "🐔 codecov: upload test coverage"
       uses: codecov/codecov-action@v4.2.0
       env:
