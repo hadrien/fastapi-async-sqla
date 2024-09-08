@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 📥 checkout
+      uses: actions/checkout@v4
+    - name: 🐍 setup python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: ⚡️ setup uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "latest"
+        enable-cache: true
+        cache-suffix: 2024-09-08 09:10
+        cache-dependency-glob: |
+          pyproject.toml
+          uv.lock
+    - name: ⚡️ uv sync
+      run: uv sync
+    - name: 🧪 pytest
+      run: uv run pytest --cov fastapi_async_sqla --cov-report=term-missing --cov-report=xml
+    - name:  "🐔 codecov: upload test coverage"
+      uses: codecov/codecov-action@v4.2.0
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
