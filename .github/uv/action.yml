@@ -1,0 +1,12 @@
+name: Setup uv
+description: Setup the uv runtime
+runs:
+  using: "composite"
+  steps:
+    - name: ⚡️ setup uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "latest"
+        enable-cache: true
+        cache-suffix: 2024-09-08 09:10
+        cache-dependency-glob: "uv.lock"

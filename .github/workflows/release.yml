@@ -1,0 +1,37 @@
+name: Release & Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  Release-And-Publish:
+    runs-on: ubuntu-latest
+    concurrency: release
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+    - name: 📥 checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: 🔧 setup uv
+      uses: ./.github/uv
+    - name: 📜 semantic release version & publish on PyPI
+      run: |
+        RET_CODE=0
+        uv run semantic-release --strict version || RET_CODE=$?
+        if [ $RET_CODE -ne 0 ]; then
+          echo "🙅🏽 Nothing to publish"
+        else
+          echo "🙆🏽 Publishing on PyPI"
+          uv build
+          uv run twine upload dist/*
+        fi
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
