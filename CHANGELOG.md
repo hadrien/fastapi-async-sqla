@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.1.1 (2024-09-08)
+
+### Fix
+
+* fix: cutting a release &amp; publishing on pypi 🐍 ([`fda34c1`](https://github.com/hadrien/fastapi-async-sqla/commit/fda34c16991f6104e93a113e3247a424c87575a0))
+
 ## v0.1.0 (2024-09-08)
 
 ### Chore
