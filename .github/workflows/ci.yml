@@ -16,4 +16,4 @@ jobs:
       with:
         version: "latest"
     - run: uv sync
-    - run: uv run pytest
+    - run: uv run pytest --cov fastapi-async-sqla
