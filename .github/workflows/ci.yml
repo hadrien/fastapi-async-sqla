@@ -18,10 +18,6 @@ jobs:
       uses: astral-sh/setup-uv@v2
       with:
         version: "latest"
-    - name: Enable caching and define a custom cache key suffix
-      id: setup-uv
-      uses: astral-sh/setup-uv@v2
-      with:
         enable-cache: true
         cache-suffix: ${{ hashFiles('pyproject.toml') }}-${{ hashFiles('uv.lock') }}
     - name: ⚡️ uv sync
