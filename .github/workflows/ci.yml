@@ -18,10 +18,16 @@ jobs:
       uses: astral-sh/setup-uv@v2
       with:
         version: "latest"
+    - name: Enable caching and define a custom cache key suffix
+      id: setup-uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        enable-cache: true
+        cache-suffix: ${{ hashFiles('pyproject.toml') }}-${{ hashFiles('uv.lock') }}
     - name: ⚡️ uv sync
       run: uv sync
     - name: 🧪 pytest
-      run: uv run pytest  --cov fastapi_async_sqla --cov-report=term-missing --cov-report=xml
+      run: uv run pytest --cov fastapi_async_sqla --cov-report=term-missing --cov-report=xml
     - name:  "🐔 codecov: upload test coverage"
       uses: codecov/codecov-action@v4.2.0
       env:
