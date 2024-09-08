@@ -1,0 +1,36 @@
+name: Publish on PyPI
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    concurrency: release
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+    - name: 📥 checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: ⚡️ setup uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "latest"
+        enable-cache: true
+        cache-suffix: 2024-09-08 09:10
+        cache-dependency-glob: "uv.lock"
+    - name: 📜 semantic release version
+      run: uv run semantic-release --strict version
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: 🛠️ build
+      run: uv build
+    - name: 📰 publish on pypi
+      run: uv run twine upload dist/*
+      env:
+        TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}

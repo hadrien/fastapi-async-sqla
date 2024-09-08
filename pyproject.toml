@@ -23,6 +23,8 @@ dev-dependencies = [
     "toml>=0.10.2",
     "aiosqlite>=0.20.0",
     "fastapi>=0.114.0",
+    "python-semantic-release>=9.8.8",
+    "twine>=5.1.1",
 ]
 
 [tool.uv.sources]
@@ -35,3 +37,9 @@ asyncio_mode = 'auto'
 branch = true
 omit = ["tests/*", ".venv/*"]
 concurrency = ["thread", "greenlet"]
+
+[tool.semantic_release.remote.token]
+env = "GH_TOKEN"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
