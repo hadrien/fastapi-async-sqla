@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.1.2 (2024-09-08)
+
+### Fix
+
+* fix: remove duplicated badge from README 😓 ([`f493258`](https://github.com/hadrien/fastapi-async-sqla/commit/f493258c1d62536a5664c41b53fd444f51ed6415))
+
 ## v0.1.1 (2024-09-08)
 
 ### Fix
