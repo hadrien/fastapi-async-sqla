@@ -19,7 +19,14 @@ jobs:
     - name: 🔧 setup uv
       uses: ./.github/uv
     - name: 📜 semantic release version
-      run: uv run semantic-release --strict version
+      run: |
+        uv run semantic-release --strict version
+        RET_CODE=$?
+        if [ $RET_CODE -ne 0 ]; then
+          echo "Nothing to publish"
+          exit 0
+        fi
+      continue-on-error: true
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: 🛠️ build
